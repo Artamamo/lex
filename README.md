@@ -11,7 +11,7 @@ n = 0
 
 calc > for i loop 0 5:n=n+5
 
-26
+25
 ```
 
 if
