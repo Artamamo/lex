@@ -7,7 +7,7 @@ programer : CBB107017
 for
 
 ```
->n = 0
+n = 0
 
 calc > for i loop 0 5:n=n+5
 
