@@ -2,6 +2,8 @@ import ply.yacc as yacc
 import math
 from mylex import tokens
 from mylex import lexer
+from Three_Address import THree_Address
+
 names = {}
 def p_statement_expression(p):
     'statement : expression'
@@ -123,3 +125,9 @@ while True:
         if not tok:
             break
         print(tok)
+    
+    try:
+        THree_Address(s)
+    except:
+        pass
+    
