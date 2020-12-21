@@ -1,6 +1,7 @@
 import ply.yacc as yacc
 import math
 from mylex import tokens
+from mylex import lexer
 names = {}
 def p_statement_expression(p):
     'statement : expression'
@@ -59,7 +60,7 @@ def p_term_power(p):
     p[0] = pow(p[1],p[3])
 def p_term_cuberoot(p):
     'term : term SQRT factor'
-    p[0] = pow(p[1],1/p[4])
+    p[0] = pow(p[1],1/p[3])
 def p_term_factor(p):
     'term : factor'
     p[0] = p[1]
@@ -115,3 +116,10 @@ while True:
     if not s: continue
     result = parser.parse(s)
     print(result)
+    
+    lexer.input(s)
+    while True:
+        tok =lexer.token()
+        if not tok:
+            break
+        print(tok)
