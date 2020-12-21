@@ -17,8 +17,6 @@ calc > for i loop 0 5:n=n+5
 if
 
 ```
-n = 0
-
 calc > if 5>3 : n=5 else: n = 9
 
 calc > n
