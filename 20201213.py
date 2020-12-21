@@ -118,8 +118,10 @@ while True:
     if not s: continue
     result = parser.parse(s)
     print(result)
-    
-    lexer.input(s)
+    try:
+        lexer.input(s)
+    except:
+        pass
     while True:
         tok =lexer.token()
         if not tok:
