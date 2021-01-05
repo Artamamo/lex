@@ -48,8 +48,7 @@ def THree_Address(lst):
             data = op_lst
             for i in range(1,len(data)-1):
                 if(data[i][1]==data[i][2]):
-                   data[i][1] = "L_:" + data[i][1]
-                   data[i][2] = "R_:" + data[i][2]
+                   data[i][2] = " " + data[i][2]
 
                 G.add_node("%s" %(data[i][1]))
                 G.add_node("%s" %(data[i][2]))
