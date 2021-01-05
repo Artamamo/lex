@@ -1,4 +1,8 @@
-﻿prio_dict = {'-':1,'+':2,'*':3,'/':4,'^':5,'**':6}
+﻿import networkx as nx 
+from networkx.drawing.nx_agraph import graphviz_layout
+import matplotlib.pyplot as plt
+
+prio_dict = {'-':1,'+':2,'*':3,'/':4,'^':5,'**':6}
 def find_top_prio(lst):
     top_prio = 1
     count_ops = 0
@@ -39,6 +43,29 @@ def THree_Address(lst):
                 top_prio, count_ops = find_top_prio(ip)
             if len(ip) == 1:
                 op_lst.append(['=',ip[i],' ','a'])
+            G = nx.DiGraph()
+            G.clear()
+            data = op_lst
+            for i in range(1,len(data)-1):
+                if(data[i][1]==data[i][2]):
+                   data[i][1] = "L_:" + data[i][1]
+                   data[i][2] = "R_:" + data[i][2]
+
+                G.add_node("%s" %(data[i][1]))
+                G.add_node("%s" %(data[i][2]))
+                G.add_node("%s" %(data[i][3]))
+
+                G.add_edge("%s" %(data[i][3]), "%s" %(data[i][1]))
+                G.add_edge("%s" %(data[i][3]), "%s" %(data[i][2]))
+        
+            nx.nx_agraph.write_dot(G,'test.dot')
+            plt.title('draw_networkx')
+            pos = graphviz_layout(G, prog='dot')
+            nx.draw(G, pos, with_labels=True, arrows=False, node_size=600)
+
+            plt.show()
+            plt.clf()
+            plt.cla()
         i += 1
     for i in range(len(op_lst)):
         try:

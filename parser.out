@@ -1,0 +1,968 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> expression
+Rule 2     statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME PLUS NUMBER
+Rule 3     statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME MINUS NUMBER
+Rule 4     statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME TIMES NUMBER
+Rule 5     statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME DIVIDE NUMBER
+Rule 6     statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME POWER NUMBER
+Rule 7     statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME SQRT NUMBER
+Rule 8     statement -> IF comparison COLON NAME EQUALS expression
+Rule 9     statement -> IF comparison COLON NAME EQUALS expression ELSE COLON NAME EQUALS expression
+Rule 10    expression -> expression PLUS term
+Rule 11    expression -> expression MINUS term
+Rule 12    expression -> term
+Rule 13    term -> term TIMES factor
+Rule 14    term -> term DIVIDE factor
+Rule 15    term -> term POWER factor
+Rule 16    term -> term SQRT factor
+Rule 17    term -> factor
+Rule 18    factor -> NUMBER
+Rule 19    factor -> LPAREN expression RPAREN
+Rule 20    factor -> NAME EQUALS factor
+Rule 21    factor -> NAME
+Rule 22    comparison -> factor EQQUAL factor
+Rule 23    comparison -> factor NOTEQ factor
+Rule 24    comparison -> factor LARGE factor
+Rule 25    comparison -> factor SMALL factor
+Rule 26    comparison -> factor LRGEQ factor
+Rule 27    comparison -> factor SMLEQ factor
+
+Terminals, with rules where they appear
+
+COLON                : 2 3 4 5 6 7 8 9 9
+DIVIDE               : 5 14
+ELSE                 : 9
+EQQUAL               : 22
+EQUALS               : 2 3 4 5 6 7 8 9 9 20
+FOR                  : 2 3 4 5 6 7
+IF                   : 8 9
+LARGE                : 24
+LOOP                 : 2 3 4 5 6 7
+LPAREN               : 19
+LRGEQ                : 26
+MINUS                : 3 11
+NAME                 : 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7 7 8 9 9 20 21
+NOTEQ                : 23
+NUMBER               : 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7 7 18
+PLUS                 : 2 10
+POWER                : 6 15
+RPAREN               : 19
+SMALL                : 25
+SMLEQ                : 27
+SQRT                 : 7 16
+TIMES                : 4 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+comparison           : 8 9
+expression           : 1 8 9 9 10 11 19
+factor               : 13 14 15 16 17 20 22 22 23 23 24 24 25 25 26 26 27 27
+statement            : 0
+term                 : 10 11 12 13 14 15 16
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . expression
+    (2) statement -> . FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME PLUS NUMBER
+    (3) statement -> . FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME MINUS NUMBER
+    (4) statement -> . FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME TIMES NUMBER
+    (5) statement -> . FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME DIVIDE NUMBER
+    (6) statement -> . FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME POWER NUMBER
+    (7) statement -> . FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME SQRT NUMBER
+    (8) statement -> . IF comparison COLON NAME EQUALS expression
+    (9) statement -> . IF comparison COLON NAME EQUALS expression ELSE COLON NAME EQUALS expression
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . term
+    (13) term -> . term TIMES factor
+    (14) term -> . term DIVIDE factor
+    (15) term -> . term POWER factor
+    (16) term -> . term SQRT factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    FOR             shift and go to state 3
+    IF              shift and go to state 6
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    statement                      shift and go to state 1
+    expression                     shift and go to state 2
+    term                           shift and go to state 7
+    factor                         shift and go to state 8
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> expression .
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+
+    $end            reduce using rule 1 (statement -> expression .)
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+
+
+state 3
+
+    (2) statement -> FOR . NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME PLUS NUMBER
+    (3) statement -> FOR . NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME MINUS NUMBER
+    (4) statement -> FOR . NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME TIMES NUMBER
+    (5) statement -> FOR . NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME DIVIDE NUMBER
+    (6) statement -> FOR . NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME POWER NUMBER
+    (7) statement -> FOR . NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME SQRT NUMBER
+
+    NAME            shift and go to state 12
+
+
+state 4
+
+    (20) factor -> NAME . EQUALS factor
+    (21) factor -> NAME .
+
+    EQUALS          shift and go to state 13
+    TIMES           reduce using rule 21 (factor -> NAME .)
+    DIVIDE          reduce using rule 21 (factor -> NAME .)
+    POWER           reduce using rule 21 (factor -> NAME .)
+    SQRT            reduce using rule 21 (factor -> NAME .)
+    PLUS            reduce using rule 21 (factor -> NAME .)
+    MINUS           reduce using rule 21 (factor -> NAME .)
+    $end            reduce using rule 21 (factor -> NAME .)
+    EQQUAL          reduce using rule 21 (factor -> NAME .)
+    NOTEQ           reduce using rule 21 (factor -> NAME .)
+    LARGE           reduce using rule 21 (factor -> NAME .)
+    SMALL           reduce using rule 21 (factor -> NAME .)
+    LRGEQ           reduce using rule 21 (factor -> NAME .)
+    SMLEQ           reduce using rule 21 (factor -> NAME .)
+    RPAREN          reduce using rule 21 (factor -> NAME .)
+    ELSE            reduce using rule 21 (factor -> NAME .)
+    COLON           reduce using rule 21 (factor -> NAME .)
+
+
+state 5
+
+    (18) factor -> NUMBER .
+
+    TIMES           reduce using rule 18 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 18 (factor -> NUMBER .)
+    POWER           reduce using rule 18 (factor -> NUMBER .)
+    SQRT            reduce using rule 18 (factor -> NUMBER .)
+    PLUS            reduce using rule 18 (factor -> NUMBER .)
+    MINUS           reduce using rule 18 (factor -> NUMBER .)
+    $end            reduce using rule 18 (factor -> NUMBER .)
+    EQQUAL          reduce using rule 18 (factor -> NUMBER .)
+    NOTEQ           reduce using rule 18 (factor -> NUMBER .)
+    LARGE           reduce using rule 18 (factor -> NUMBER .)
+    SMALL           reduce using rule 18 (factor -> NUMBER .)
+    LRGEQ           reduce using rule 18 (factor -> NUMBER .)
+    SMLEQ           reduce using rule 18 (factor -> NUMBER .)
+    RPAREN          reduce using rule 18 (factor -> NUMBER .)
+    ELSE            reduce using rule 18 (factor -> NUMBER .)
+    COLON           reduce using rule 18 (factor -> NUMBER .)
+
+
+state 6
+
+    (8) statement -> IF . comparison COLON NAME EQUALS expression
+    (9) statement -> IF . comparison COLON NAME EQUALS expression ELSE COLON NAME EQUALS expression
+    (22) comparison -> . factor EQQUAL factor
+    (23) comparison -> . factor NOTEQ factor
+    (24) comparison -> . factor LARGE factor
+    (25) comparison -> . factor SMALL factor
+    (26) comparison -> . factor LRGEQ factor
+    (27) comparison -> . factor SMLEQ factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
+
+state 7
+
+    (12) expression -> term .
+    (13) term -> term . TIMES factor
+    (14) term -> term . DIVIDE factor
+    (15) term -> term . POWER factor
+    (16) term -> term . SQRT factor
+
+    PLUS            reduce using rule 12 (expression -> term .)
+    MINUS           reduce using rule 12 (expression -> term .)
+    $end            reduce using rule 12 (expression -> term .)
+    RPAREN          reduce using rule 12 (expression -> term .)
+    ELSE            reduce using rule 12 (expression -> term .)
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+    POWER           shift and go to state 18
+    SQRT            shift and go to state 19
+
+
+state 8
+
+    (17) term -> factor .
+
+    TIMES           reduce using rule 17 (term -> factor .)
+    DIVIDE          reduce using rule 17 (term -> factor .)
+    POWER           reduce using rule 17 (term -> factor .)
+    SQRT            reduce using rule 17 (term -> factor .)
+    PLUS            reduce using rule 17 (term -> factor .)
+    MINUS           reduce using rule 17 (term -> factor .)
+    $end            reduce using rule 17 (term -> factor .)
+    RPAREN          reduce using rule 17 (term -> factor .)
+    ELSE            reduce using rule 17 (term -> factor .)
+
+
+state 9
+
+    (19) factor -> LPAREN . expression RPAREN
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . term
+    (13) term -> . term TIMES factor
+    (14) term -> . term DIVIDE factor
+    (15) term -> . term POWER factor
+    (16) term -> . term SQRT factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    expression                     shift and go to state 20
+    term                           shift and go to state 7
+    factor                         shift and go to state 8
+
+state 10
+
+    (10) expression -> expression PLUS . term
+    (13) term -> . term TIMES factor
+    (14) term -> . term DIVIDE factor
+    (15) term -> . term POWER factor
+    (16) term -> . term SQRT factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    term                           shift and go to state 21
+    factor                         shift and go to state 8
+
+state 11
+
+    (11) expression -> expression MINUS . term
+    (13) term -> . term TIMES factor
+    (14) term -> . term DIVIDE factor
+    (15) term -> . term POWER factor
+    (16) term -> . term SQRT factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    term                           shift and go to state 22
+    factor                         shift and go to state 8
+
+state 12
+
+    (2) statement -> FOR NAME . LOOP NUMBER NUMBER COLON NAME EQUALS NAME PLUS NUMBER
+    (3) statement -> FOR NAME . LOOP NUMBER NUMBER COLON NAME EQUALS NAME MINUS NUMBER
+    (4) statement -> FOR NAME . LOOP NUMBER NUMBER COLON NAME EQUALS NAME TIMES NUMBER
+    (5) statement -> FOR NAME . LOOP NUMBER NUMBER COLON NAME EQUALS NAME DIVIDE NUMBER
+    (6) statement -> FOR NAME . LOOP NUMBER NUMBER COLON NAME EQUALS NAME POWER NUMBER
+    (7) statement -> FOR NAME . LOOP NUMBER NUMBER COLON NAME EQUALS NAME SQRT NUMBER
+
+    LOOP            shift and go to state 23
+
+
+state 13
+
+    (20) factor -> NAME EQUALS . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 24
+
+state 14
+
+    (8) statement -> IF comparison . COLON NAME EQUALS expression
+    (9) statement -> IF comparison . COLON NAME EQUALS expression ELSE COLON NAME EQUALS expression
+
+    COLON           shift and go to state 25
+
+
+state 15
+
+    (22) comparison -> factor . EQQUAL factor
+    (23) comparison -> factor . NOTEQ factor
+    (24) comparison -> factor . LARGE factor
+    (25) comparison -> factor . SMALL factor
+    (26) comparison -> factor . LRGEQ factor
+    (27) comparison -> factor . SMLEQ factor
+
+    EQQUAL          shift and go to state 26
+    NOTEQ           shift and go to state 27
+    LARGE           shift and go to state 28
+    SMALL           shift and go to state 29
+    LRGEQ           shift and go to state 30
+    SMLEQ           shift and go to state 31
+
+
+state 16
+
+    (13) term -> term TIMES . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 32
+
+state 17
+
+    (14) term -> term DIVIDE . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 33
+
+state 18
+
+    (15) term -> term POWER . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 34
+
+state 19
+
+    (16) term -> term SQRT . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 35
+
+state 20
+
+    (19) factor -> LPAREN expression . RPAREN
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 36
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+
+
+state 21
+
+    (10) expression -> expression PLUS term .
+    (13) term -> term . TIMES factor
+    (14) term -> term . DIVIDE factor
+    (15) term -> term . POWER factor
+    (16) term -> term . SQRT factor
+
+    PLUS            reduce using rule 10 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 10 (expression -> expression PLUS term .)
+    $end            reduce using rule 10 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 10 (expression -> expression PLUS term .)
+    ELSE            reduce using rule 10 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+    POWER           shift and go to state 18
+    SQRT            shift and go to state 19
+
+
+state 22
+
+    (11) expression -> expression MINUS term .
+    (13) term -> term . TIMES factor
+    (14) term -> term . DIVIDE factor
+    (15) term -> term . POWER factor
+    (16) term -> term . SQRT factor
+
+    PLUS            reduce using rule 11 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 11 (expression -> expression MINUS term .)
+    $end            reduce using rule 11 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 11 (expression -> expression MINUS term .)
+    ELSE            reduce using rule 11 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+    POWER           shift and go to state 18
+    SQRT            shift and go to state 19
+
+
+state 23
+
+    (2) statement -> FOR NAME LOOP . NUMBER NUMBER COLON NAME EQUALS NAME PLUS NUMBER
+    (3) statement -> FOR NAME LOOP . NUMBER NUMBER COLON NAME EQUALS NAME MINUS NUMBER
+    (4) statement -> FOR NAME LOOP . NUMBER NUMBER COLON NAME EQUALS NAME TIMES NUMBER
+    (5) statement -> FOR NAME LOOP . NUMBER NUMBER COLON NAME EQUALS NAME DIVIDE NUMBER
+    (6) statement -> FOR NAME LOOP . NUMBER NUMBER COLON NAME EQUALS NAME POWER NUMBER
+    (7) statement -> FOR NAME LOOP . NUMBER NUMBER COLON NAME EQUALS NAME SQRT NUMBER
+
+    NUMBER          shift and go to state 37
+
+
+state 24
+
+    (20) factor -> NAME EQUALS factor .
+
+    TIMES           reduce using rule 20 (factor -> NAME EQUALS factor .)
+    DIVIDE          reduce using rule 20 (factor -> NAME EQUALS factor .)
+    POWER           reduce using rule 20 (factor -> NAME EQUALS factor .)
+    SQRT            reduce using rule 20 (factor -> NAME EQUALS factor .)
+    PLUS            reduce using rule 20 (factor -> NAME EQUALS factor .)
+    MINUS           reduce using rule 20 (factor -> NAME EQUALS factor .)
+    $end            reduce using rule 20 (factor -> NAME EQUALS factor .)
+    EQQUAL          reduce using rule 20 (factor -> NAME EQUALS factor .)
+    NOTEQ           reduce using rule 20 (factor -> NAME EQUALS factor .)
+    LARGE           reduce using rule 20 (factor -> NAME EQUALS factor .)
+    SMALL           reduce using rule 20 (factor -> NAME EQUALS factor .)
+    LRGEQ           reduce using rule 20 (factor -> NAME EQUALS factor .)
+    SMLEQ           reduce using rule 20 (factor -> NAME EQUALS factor .)
+    RPAREN          reduce using rule 20 (factor -> NAME EQUALS factor .)
+    ELSE            reduce using rule 20 (factor -> NAME EQUALS factor .)
+    COLON           reduce using rule 20 (factor -> NAME EQUALS factor .)
+
+
+state 25
+
+    (8) statement -> IF comparison COLON . NAME EQUALS expression
+    (9) statement -> IF comparison COLON . NAME EQUALS expression ELSE COLON NAME EQUALS expression
+
+    NAME            shift and go to state 38
+
+
+state 26
+
+    (22) comparison -> factor EQQUAL . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 39
+
+state 27
+
+    (23) comparison -> factor NOTEQ . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 40
+
+state 28
+
+    (24) comparison -> factor LARGE . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 41
+
+state 29
+
+    (25) comparison -> factor SMALL . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 42
+
+state 30
+
+    (26) comparison -> factor LRGEQ . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 43
+
+state 31
+
+    (27) comparison -> factor SMLEQ . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    factor                         shift and go to state 44
+
+state 32
+
+    (13) term -> term TIMES factor .
+
+    TIMES           reduce using rule 13 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 13 (term -> term TIMES factor .)
+    POWER           reduce using rule 13 (term -> term TIMES factor .)
+    SQRT            reduce using rule 13 (term -> term TIMES factor .)
+    PLUS            reduce using rule 13 (term -> term TIMES factor .)
+    MINUS           reduce using rule 13 (term -> term TIMES factor .)
+    $end            reduce using rule 13 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 13 (term -> term TIMES factor .)
+    ELSE            reduce using rule 13 (term -> term TIMES factor .)
+
+
+state 33
+
+    (14) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 14 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 14 (term -> term DIVIDE factor .)
+    POWER           reduce using rule 14 (term -> term DIVIDE factor .)
+    SQRT            reduce using rule 14 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 14 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 14 (term -> term DIVIDE factor .)
+    $end            reduce using rule 14 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 14 (term -> term DIVIDE factor .)
+    ELSE            reduce using rule 14 (term -> term DIVIDE factor .)
+
+
+state 34
+
+    (15) term -> term POWER factor .
+
+    TIMES           reduce using rule 15 (term -> term POWER factor .)
+    DIVIDE          reduce using rule 15 (term -> term POWER factor .)
+    POWER           reduce using rule 15 (term -> term POWER factor .)
+    SQRT            reduce using rule 15 (term -> term POWER factor .)
+    PLUS            reduce using rule 15 (term -> term POWER factor .)
+    MINUS           reduce using rule 15 (term -> term POWER factor .)
+    $end            reduce using rule 15 (term -> term POWER factor .)
+    RPAREN          reduce using rule 15 (term -> term POWER factor .)
+    ELSE            reduce using rule 15 (term -> term POWER factor .)
+
+
+state 35
+
+    (16) term -> term SQRT factor .
+
+    TIMES           reduce using rule 16 (term -> term SQRT factor .)
+    DIVIDE          reduce using rule 16 (term -> term SQRT factor .)
+    POWER           reduce using rule 16 (term -> term SQRT factor .)
+    SQRT            reduce using rule 16 (term -> term SQRT factor .)
+    PLUS            reduce using rule 16 (term -> term SQRT factor .)
+    MINUS           reduce using rule 16 (term -> term SQRT factor .)
+    $end            reduce using rule 16 (term -> term SQRT factor .)
+    RPAREN          reduce using rule 16 (term -> term SQRT factor .)
+    ELSE            reduce using rule 16 (term -> term SQRT factor .)
+
+
+state 36
+
+    (19) factor -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    POWER           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    SQRT            reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    EQQUAL          reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    NOTEQ           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    LARGE           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    SMALL           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    LRGEQ           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    SMLEQ           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    ELSE            reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+    COLON           reduce using rule 19 (factor -> LPAREN expression RPAREN .)
+
+
+state 37
+
+    (2) statement -> FOR NAME LOOP NUMBER . NUMBER COLON NAME EQUALS NAME PLUS NUMBER
+    (3) statement -> FOR NAME LOOP NUMBER . NUMBER COLON NAME EQUALS NAME MINUS NUMBER
+    (4) statement -> FOR NAME LOOP NUMBER . NUMBER COLON NAME EQUALS NAME TIMES NUMBER
+    (5) statement -> FOR NAME LOOP NUMBER . NUMBER COLON NAME EQUALS NAME DIVIDE NUMBER
+    (6) statement -> FOR NAME LOOP NUMBER . NUMBER COLON NAME EQUALS NAME POWER NUMBER
+    (7) statement -> FOR NAME LOOP NUMBER . NUMBER COLON NAME EQUALS NAME SQRT NUMBER
+
+    NUMBER          shift and go to state 45
+
+
+state 38
+
+    (8) statement -> IF comparison COLON NAME . EQUALS expression
+    (9) statement -> IF comparison COLON NAME . EQUALS expression ELSE COLON NAME EQUALS expression
+
+    EQUALS          shift and go to state 46
+
+
+state 39
+
+    (22) comparison -> factor EQQUAL factor .
+
+    COLON           reduce using rule 22 (comparison -> factor EQQUAL factor .)
+
+
+state 40
+
+    (23) comparison -> factor NOTEQ factor .
+
+    COLON           reduce using rule 23 (comparison -> factor NOTEQ factor .)
+
+
+state 41
+
+    (24) comparison -> factor LARGE factor .
+
+    COLON           reduce using rule 24 (comparison -> factor LARGE factor .)
+
+
+state 42
+
+    (25) comparison -> factor SMALL factor .
+
+    COLON           reduce using rule 25 (comparison -> factor SMALL factor .)
+
+
+state 43
+
+    (26) comparison -> factor LRGEQ factor .
+
+    COLON           reduce using rule 26 (comparison -> factor LRGEQ factor .)
+
+
+state 44
+
+    (27) comparison -> factor SMLEQ factor .
+
+    COLON           reduce using rule 27 (comparison -> factor SMLEQ factor .)
+
+
+state 45
+
+    (2) statement -> FOR NAME LOOP NUMBER NUMBER . COLON NAME EQUALS NAME PLUS NUMBER
+    (3) statement -> FOR NAME LOOP NUMBER NUMBER . COLON NAME EQUALS NAME MINUS NUMBER
+    (4) statement -> FOR NAME LOOP NUMBER NUMBER . COLON NAME EQUALS NAME TIMES NUMBER
+    (5) statement -> FOR NAME LOOP NUMBER NUMBER . COLON NAME EQUALS NAME DIVIDE NUMBER
+    (6) statement -> FOR NAME LOOP NUMBER NUMBER . COLON NAME EQUALS NAME POWER NUMBER
+    (7) statement -> FOR NAME LOOP NUMBER NUMBER . COLON NAME EQUALS NAME SQRT NUMBER
+
+    COLON           shift and go to state 47
+
+
+state 46
+
+    (8) statement -> IF comparison COLON NAME EQUALS . expression
+    (9) statement -> IF comparison COLON NAME EQUALS . expression ELSE COLON NAME EQUALS expression
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . term
+    (13) term -> . term TIMES factor
+    (14) term -> . term DIVIDE factor
+    (15) term -> . term POWER factor
+    (16) term -> . term SQRT factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    expression                     shift and go to state 48
+    term                           shift and go to state 7
+    factor                         shift and go to state 8
+
+state 47
+
+    (2) statement -> FOR NAME LOOP NUMBER NUMBER COLON . NAME EQUALS NAME PLUS NUMBER
+    (3) statement -> FOR NAME LOOP NUMBER NUMBER COLON . NAME EQUALS NAME MINUS NUMBER
+    (4) statement -> FOR NAME LOOP NUMBER NUMBER COLON . NAME EQUALS NAME TIMES NUMBER
+    (5) statement -> FOR NAME LOOP NUMBER NUMBER COLON . NAME EQUALS NAME DIVIDE NUMBER
+    (6) statement -> FOR NAME LOOP NUMBER NUMBER COLON . NAME EQUALS NAME POWER NUMBER
+    (7) statement -> FOR NAME LOOP NUMBER NUMBER COLON . NAME EQUALS NAME SQRT NUMBER
+
+    NAME            shift and go to state 49
+
+
+state 48
+
+    (8) statement -> IF comparison COLON NAME EQUALS expression .
+    (9) statement -> IF comparison COLON NAME EQUALS expression . ELSE COLON NAME EQUALS expression
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+
+    $end            reduce using rule 8 (statement -> IF comparison COLON NAME EQUALS expression .)
+    ELSE            shift and go to state 50
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+
+
+state 49
+
+    (2) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME . EQUALS NAME PLUS NUMBER
+    (3) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME . EQUALS NAME MINUS NUMBER
+    (4) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME . EQUALS NAME TIMES NUMBER
+    (5) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME . EQUALS NAME DIVIDE NUMBER
+    (6) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME . EQUALS NAME POWER NUMBER
+    (7) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME . EQUALS NAME SQRT NUMBER
+
+    EQUALS          shift and go to state 51
+
+
+state 50
+
+    (9) statement -> IF comparison COLON NAME EQUALS expression ELSE . COLON NAME EQUALS expression
+
+    COLON           shift and go to state 52
+
+
+state 51
+
+    (2) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS . NAME PLUS NUMBER
+    (3) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS . NAME MINUS NUMBER
+    (4) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS . NAME TIMES NUMBER
+    (5) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS . NAME DIVIDE NUMBER
+    (6) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS . NAME POWER NUMBER
+    (7) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS . NAME SQRT NUMBER
+
+    NAME            shift and go to state 53
+
+
+state 52
+
+    (9) statement -> IF comparison COLON NAME EQUALS expression ELSE COLON . NAME EQUALS expression
+
+    NAME            shift and go to state 54
+
+
+state 53
+
+    (2) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME . PLUS NUMBER
+    (3) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME . MINUS NUMBER
+    (4) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME . TIMES NUMBER
+    (5) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME . DIVIDE NUMBER
+    (6) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME . POWER NUMBER
+    (7) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME . SQRT NUMBER
+
+    PLUS            shift and go to state 55
+    MINUS           shift and go to state 56
+    TIMES           shift and go to state 57
+    DIVIDE          shift and go to state 58
+    POWER           shift and go to state 59
+    SQRT            shift and go to state 60
+
+
+state 54
+
+    (9) statement -> IF comparison COLON NAME EQUALS expression ELSE COLON NAME . EQUALS expression
+
+    EQUALS          shift and go to state 61
+
+
+state 55
+
+    (2) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME PLUS . NUMBER
+
+    NUMBER          shift and go to state 62
+
+
+state 56
+
+    (3) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME MINUS . NUMBER
+
+    NUMBER          shift and go to state 63
+
+
+state 57
+
+    (4) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME TIMES . NUMBER
+
+    NUMBER          shift and go to state 64
+
+
+state 58
+
+    (5) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME DIVIDE . NUMBER
+
+    NUMBER          shift and go to state 65
+
+
+state 59
+
+    (6) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME POWER . NUMBER
+
+    NUMBER          shift and go to state 66
+
+
+state 60
+
+    (7) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME SQRT . NUMBER
+
+    NUMBER          shift and go to state 67
+
+
+state 61
+
+    (9) statement -> IF comparison COLON NAME EQUALS expression ELSE COLON NAME EQUALS . expression
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . term
+    (13) term -> . term TIMES factor
+    (14) term -> . term DIVIDE factor
+    (15) term -> . term POWER factor
+    (16) term -> . term SQRT factor
+    (17) term -> . factor
+    (18) factor -> . NUMBER
+    (19) factor -> . LPAREN expression RPAREN
+    (20) factor -> . NAME EQUALS factor
+    (21) factor -> . NAME
+
+    NUMBER          shift and go to state 5
+    LPAREN          shift and go to state 9
+    NAME            shift and go to state 4
+
+    expression                     shift and go to state 68
+    term                           shift and go to state 7
+    factor                         shift and go to state 8
+
+state 62
+
+    (2) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME PLUS NUMBER .
+
+    $end            reduce using rule 2 (statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME PLUS NUMBER .)
+
+
+state 63
+
+    (3) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME MINUS NUMBER .
+
+    $end            reduce using rule 3 (statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME MINUS NUMBER .)
+
+
+state 64
+
+    (4) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME TIMES NUMBER .
+
+    $end            reduce using rule 4 (statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME TIMES NUMBER .)
+
+
+state 65
+
+    (5) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME DIVIDE NUMBER .
+
+    $end            reduce using rule 5 (statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME DIVIDE NUMBER .)
+
+
+state 66
+
+    (6) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME POWER NUMBER .
+
+    $end            reduce using rule 6 (statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME POWER NUMBER .)
+
+
+state 67
+
+    (7) statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME SQRT NUMBER .
+
+    $end            reduce using rule 7 (statement -> FOR NAME LOOP NUMBER NUMBER COLON NAME EQUALS NAME SQRT NUMBER .)
+
+
+state 68
+
+    (9) statement -> IF comparison COLON NAME EQUALS expression ELSE COLON NAME EQUALS expression .
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+
+    $end            reduce using rule 9 (statement -> IF comparison COLON NAME EQUALS expression ELSE COLON NAME EQUALS expression .)
+    PLUS            shift and go to state 10
+    MINUS           shift and go to state 11
+

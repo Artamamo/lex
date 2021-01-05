@@ -4,11 +4,12 @@ reserved = {
     'for':'FOR',
     'loop':'LOOP',
     'else':'ELSE',
-    'if':'IF'
+    'if':'IF',
+    #'while':'WHILE'
 }
 
 tokens = ['SQRT','NOTEQ','SMLEQ','LRGEQ','SMALL','LARGE','EQQUAL','COLON','NAME','NUMBER','PLUS','MINUS','TIMES','DIVIDE','EQUALS','LPAREN','RPAREN','POWER'
-]+list(reserved.values())
+,'COMMA']+list(reserved.values())
 
 t_PLUS = r'\+'
 t_MINUS = r'-'
@@ -26,7 +27,7 @@ t_EQQUAL = r'\=\='
 t_LRGEQ = r'\>\='
 t_SMLEQ = r'\<\='
 t_NOTEQ = r'\!\='
-
+t_COMMA = r'\,'
 
 t_ignore = r' \t'
 
@@ -52,8 +53,9 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 lexer = lex.lex()
+#lexer.input(',')
+#lexer.input('while')
 lexer.input('')
-
 while True:
     tok =lexer.token()
     if not tok:
